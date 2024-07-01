@@ -1,0 +1,4 @@
+<server>
+	<script src="BASSMusic.nut" type="client" />
+	<script src="BASSMusic3D.nut" type="client" />
+</server>
