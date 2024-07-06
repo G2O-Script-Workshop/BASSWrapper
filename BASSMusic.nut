@@ -8,7 +8,7 @@ class BASSMusic {
 	handle = null;
 
 	constructor(fileName){
-		if(!BASS_Init(-1, 44100, 0, 0, null)) {
+		if(!BASS_Init(-1, 44100, BASS_DEVICE_DEFAULT)) {
 			throw "Can't initialize BASS";
 		}
 
