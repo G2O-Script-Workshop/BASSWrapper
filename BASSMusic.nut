@@ -8,11 +8,11 @@ class BASSMusic {
 	handle = null;
 
 	constructor(fileName){
-		if(!BASS_Init(-1, 44100, BASS_DEVICE_DEFAULT)) {
+		if(!BASS_Init(-1, 44000, 0)) {
 			throw "Can't initialize BASS";
 		}
 
-		this.handle = BASS_StreamCreateFile(fileName, BASS_SAMPLE_VAM);
+		this.handle = BASS_StreamCreateFile(fileName, 0);
 	}
 
 
@@ -29,7 +29,7 @@ class BASSMusic {
 			BASS_ChannelFlags(this.handle, BASS_SAMPLE_LOOP, 0);
 		}
 
-		BASS_ChannelPlay(this.handle, false);
+		BASS_ChannelPlay(this.handle, true);
 	}
 
 	function stop() {
@@ -39,8 +39,10 @@ class BASSMusic {
 	}
 
 	function setVolume(volume) {
+		if(volume > 100) volume = 100;
+
 		if(this.handle != null) {
-			BASS_ChannelSetAttribute(this.handle, BASS_ATTRIB_VOL, volume / 100.0);
+			BASS_ChannelSetAttribute(this.handle, BASS_ATTRIB_VOL, volume * 1.0);
 		}
 	}
 

@@ -14,11 +14,11 @@ class BASSMusic3D {
 	handle = null;
 
 	constructor(fileName){
-		if(!BASS_Init(-1, 44100, BASS_DEVICE_3D)) {
+		if(!BASS_Init(-1, 44100, 0)) {
 			throw "Can't initialize BASS with 3D support";
 		}
 
-		this.handle = BASS_StreamCreateFile(fileName, BASS_SAMPLE_3D);
+		this.handle = BASS_StreamCreateFile(fileName, 0);
 	}
 
 
@@ -36,7 +36,7 @@ class BASSMusic3D {
 		}
 
 		this.apply3DAttributes();
-		BASS_ChannelPlay(this.handle, false);
+		BASS_ChannelPlay(this.handle, true);
 	}
 
 	function stop() {
