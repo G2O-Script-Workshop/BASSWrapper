@@ -18,7 +18,7 @@ class BASSMusic3D {
 			throw "Can't initialize BASS with 3D support";
 		}
 
-		this.handle = BASS_StreamCreateFile(false, file, 0, 0, BASS_SAMPLE_3D);
+		this.handle = BASS_StreamCreateFile(fileName, BASS_SAMPLE_3D);
 	}
 
 
@@ -32,7 +32,7 @@ class BASSMusic3D {
 		}
 
 		if(this.looping){
-			BASS_ChannelFlags(this.handle, BASS_SAMPLE_LOOP, BASS_SAMPLE_LOOP);
+			BASS_ChannelFlags(this.handle, BASS_SAMPLE_LOOP, 0);
 		}
 
 		this.apply3DAttributes();

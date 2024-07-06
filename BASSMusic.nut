@@ -12,7 +12,7 @@ class BASSMusic {
 			throw "Can't initialize BASS";
 		}
 
-		this.handle = BASS_StreamCreateFile(false, file, 0, 0, 0);
+		this.handle = BASS_StreamCreateFile(fileName, BASS_SAMPLE_VAM);
 	}
 
 
@@ -26,7 +26,7 @@ class BASSMusic {
 		}
 
 		if(this.looping){
-			BASS_ChannelFlags(this.handle, BASS_SAMPLE_LOOP, BASS_SAMPLE_LOOP);
+			BASS_ChannelFlags(this.handle, BASS_SAMPLE_LOOP, 0);
 		}
 
 		BASS_ChannelPlay(this.handle, false);
