@@ -19,14 +19,11 @@ class BASSMusic3D {
 		}
 
 		this.handle = BASS_StreamCreateFile(fileName, 0);
+		this.file = fileName;
 	}
 
 
 	function play(){
-		if(this.handle != null){
-			BASS_StreamFree(this.handle);
-		}
-
 		if(this.handle == 0){
 			throw "Can't load file: " + BASS_ErrorGetCode();
 		}
