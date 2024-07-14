@@ -23,7 +23,7 @@ class BASSMusic {
 		}
 
 		if(this.looping){
-			BASS_ChannelFlags(this.handle, BASS_SAMPLE_LOOP, 0);
+			BASS_ChannelFlags(this.handle, BASS_SAMPLE_LOOP, BASS_SAMPLE_LOOP);
 		}
 
 		BASS_ChannelPlay(this.handle, true);
