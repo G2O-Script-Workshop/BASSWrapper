@@ -8,9 +8,10 @@ class BASSMusic {
 	handle = null;
 
 	constructor(fileName){
-		if(!BASS_Init(-1, 44000, 0)) {
-			throw "Can't initialize BASS";
+		if(!BASS_Init(-1, 44100, BASS_DEVICE_INIT)) {
+			throw format("Can't initialize BASS! (code %d): %s", BASS_ErrorGetCode(), BASS_ErrorGetMessage());
 		}
+		BASS_Init(-1, 44000, BASS_DEVICE_INIT);
 
 		this.handle = BASS_StreamCreateFile(fileName, 0);
 		this.file = fileName;
@@ -19,7 +20,7 @@ class BASSMusic {
 
 	function play(){
 		if(this.handle == 0){
-			throw "Can't load file: " + BASS_ErrorGetCode();
+			throw format("Can't load file (code %d): %s", BASS_ErrorGetCode(), BASS_ErrorGetMessage());
 		}
 
 		if(this.looping){
